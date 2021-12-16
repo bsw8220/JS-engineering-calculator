@@ -6,64 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Scientific Calculator</title>
-    <script src="main.js"></script>
+    <script defer src="main.js"></script>
 </head>
 <body>
     <div class="wrap">
         <div class="calc">
             <div class="screen-area">
                 <div class="screen">
-
+                    <div class="expression-screen"><input id="expression" type="text" value="0"></div>
+                    <div class="number-screen"><input id="fomula" type="text" value="0"></div>
                 </div>
             </div>
             <table class="calc-btns">
                 <tr>
-                    <td><button type="button" id="piFunc">π</button></td>
-                    <td><button type="button" id="eFunc">e</button></td>
-                    <td><button type="button" id="lnFunc">ln</button></td>
-                    <td><button type="button" id="preAns">Ans</button></td>
+                    <td><button type="button" class="func">π</button></td>
+                    <td><button type="button" class="func">e</button></td>
+                    <td><button type="button" class="func">ln</button></td>
+                    <td><button type="button" class="func">Ans</button></td>
                 </tr>
                 <tr>
-                    <td><button type="button" id="logFunc">log</button></td>
-                    <td><button type="button" id="rootFunc">√</button></td>
-                    <td><button type="button" id="factFunc">x!</button></td>
-                    <td><button type="button" id="powerFunc">x<sup>y</sup></button></td>
+                    <td><button type="button" class="func">log</button></td>
+                    <td><button type="button" value="√(" class="func">√</button></td>
+                    <td><button type="button" value="!" class="func">x!</button></td>
+                    <td><button type="button" class="func">x<sup>y</sup></button></td>
                 </tr>
                 <tr>
-                    <td><button type="button" id="sinFunc">sin</button></td>
-                    <td><button type="button" id="cosFunc">cos</button></td>
-                    <td><button type="button" id="tanFunc">tan</button></td>
-                    <td><button type="button" id="expFunc">exp</button></td>
+                    <td><button type="button" value="sin(" class="func">sin</button></td>
+                    <td><button type="button" value="cos(" class="func">cos</button></td>
+                    <td><button type="button" value="tan(" class="func">tan</button></td>
+                    <td><button type="button" value="exp("class="func">exp</button></td>
                 </tr>
                 <tr>
-                    <td><button type="button" id="openP">(</button></td>
-                    <td><button type="button" id="closeP">)</button></td>
-                    <td><button type="button" id="rest">%</button></td>
-                    <td><button type="button" id="initiate">AC</button></td>
+                    <td><button type="button" value="(" class="openP">(</button></td>
+                    <td><button type="button" value=")" class="closeP">)</button></td>
+                    <td><button type="button" value="%" class="operator">%</button></td>
+                    <td><button type="button" onclick="init()" class="initiate">AC</button></td>
                 </tr>
                 <tr>
-                    <td><button type="button" id="numSeven">7</button></td>
-                    <td><button type="button" id="numEight">8</button></td>
-                    <td><button type="button" id="numNine">9</button></td>
-                    <td><button type="button" id="divide">÷</button></td>
+                    <td><button type="button" value="7" class="num">7</button></td>
+                    <td><button type="button" value="8" class="num">8</button></td>
+                    <td><button type="button" value="9" class="num">9</button></td>
+                    <td><button type="button" value="/" class="operator">÷</button></td>
                 </tr>
                 <tr>
-                    <td><button type="button" id="numFour">4</button></td>
-                    <td><button type="button" id="numFive">5</button></td>
-                    <td><button type="button" id="numSix">6</button></td>
-                    <td><button type="button" id="multiple">x</button></td>
+                    <td><button type="button" value="4" class="num">4</button></td>
+                    <td><button type="button" value="5" class="num">5</button></td>
+                    <td><button type="button" value="6" class="num">6</button></td>
+                    <td><button type="button" value=" * " class="operator">x</button></td>
                 </tr>
                 <tr>
-                    <td><button type="button" id="numOne">1</button></td>
-                    <td><button type="button" id="numTwo">2</button></td>
-                    <td><button type="button" id="numThree">3</button></td>
-                    <td><button type="button" id="minus">-</button></td>
+                    <td><button type="button" value="1" class="num">1</button></td>
+                    <td><button type="button" value="2" class="num">2</button></td>
+                    <td><button type="button" value="3" class="num">3</button></td>
+                    <td><button type="button" value=" - " class="operator">-</button></td>
                 </tr>
                 <tr>
-                    <td><button type="button" id="numZero">0</button></td>
-                    <td><button type="button" id="point">.</button></td>
-                    <td><button type="button" id="equal">=</button></td>
-                    <td><button type="button" id="plus">+</button></td>
+                    <td><button type="button" value="0" class="show num">0</button></td>
+                    <td><button type="button" value="." class="show num">.</button></td>
+                    <td><button type="button" value="=" onclick="getSum()" id="equal">=</button></td>
+                    <td><button type="button" value=" + " class="show operator">+</button></td>
                 </tr>
             </table>
         </div>
