@@ -36,9 +36,11 @@ function getSum(){
             document.getElementById("expression").value = expression + " = ";
 
             //함수 문자열 치환
-            if(/\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.test(expression)){
-                expression = expression.replace(/\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi, /\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.exec(expression)[0] +' * ');
-            }
+            // if(/(?<=\D|)\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.test(expression)){
+            //     console.log(/(?<=\D|)\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.test(expression));
+            //     console.log(/(?<=\D|)\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.exec(expression)[0]);
+            //     expression = expression.replace(/\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi, /\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.exec(expression)[0] +' * ');
+            // }
             if(expression.indexOf("!") > -1  ){
                 expression = expression.replace(/.\!/gi, 'factorial('+/(?<=\D|)\d*(?=\!)/.exec(expression)[0]+')');
             }
@@ -50,6 +52,9 @@ function getSum(){
             }
             if(expression.indexOf("÷") > -1){
                 expression = expression.replace(/÷/gi,'/');
+            }
+            if(expression.indexOf("exp") > -1){
+                expression = expression.replace(/exp/gi,'funcExp');
             }
             if(expression.indexOf("^") > -1){
                 expression = expression.replace(/\d*.\^.*\d/gi, `Math.pow(${/\w*(?=\^)/.exec(expression)[0]},${/(?<=\^).*\w/.exec(expression)[0]})`);
@@ -64,11 +69,12 @@ function getSum(){
             if(expression.indexOf("e") > -1){
                 console.log(expression);
                 console.log(/(?<=\D|)\d*(?=e\W)/gi.exec(expression));
-                if(/(?<=\D|)\d*e/.exec(expression)[0] > 0){
+                if(/.e(?=e\W)/.test(expression)){
+                    console.log(/.(?=e\W)/.exec(expression)[0])
                     expression = expression.replace(/.e(?=e\W)/gi, /.(?=e\W)/.exec(expression)[0] +'*Math.E');
                     
                 } else {
-                    expression = expression.replace(/.e/gi,'Math.E');
+                    expression = expression.replace(/e/gi,'Math.E');
                 }
             }
             console.log(expression);
@@ -78,12 +84,14 @@ function getSum(){
             
 
             //코드 실행
-            document.getElementById("fomula").value = eval(expression);
-            preAnswer = eval(expression);
+            result = (new Function ('return ' + expression));
+            document.getElementById("fomula").value = result();
+            preAnswer = result();
             expression = "";
         } catch(error){
             console.error(error);
             alert("수식이 잘못되었습니다.");
+            expression = "";
             document.getElementById("fomula").value = "0";
         }
     } else {
@@ -99,7 +107,7 @@ function sin(number){
 function cos(number){
     return Math.cos(number*Math.PI/180);
 }
-function exp(number){
+function funcExp(number){
     return Math.exp(number);
 }
 function sqrt(number){
