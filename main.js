@@ -25,9 +25,9 @@ function addExp(number){
 }
 function rebuildExp (exp) {
     //함수 문자열 치환
-    if(/(?<=\s)\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.test(exp)){
-        console.log(/(?<=\s)\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.test(exp));
-        console.log(/(?<=\s)\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.exec(exp)[0]);
+    if(/(?<=\s)\d*.(?=sin|cos|tan|exp|ln|log|sqrt)|^\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.test(exp)){
+        console.log(/(?<=\s)\d*.(?=sin|cos|tan|exp|ln|log|sqrt)|^\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.test(exp));
+        console.log(/(?<=\s)\d*.(?=sin|cos|tan|exp|ln|log|sqrt)|^\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.exec(exp)[0]);
         exp = exp.replace(/\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi, /\d*.(?=sin|cos|tan|exp|ln|log|sqrt)/gi.exec(exp)[0] +' * ');
     }
     console.log(exp);
