@@ -12,10 +12,9 @@ btnTable.addEventListener('click', function (event) {
     for(let i = 0; i < funcBtns.length; i++){
         if(funcBtns[i] == event.target){
             event.target.value += "("
-            console.log(event.target.value);
         }
     }
-    
+
     if(event.target.value != " = " && event.target.value != "AC"){
         addExp(event.target.value);
     }
@@ -94,9 +93,7 @@ function rebuildExp (exp) {
     if(exp.indexOf("e") > -1){
         exp = exp.replace(/e/g,'Math.E');
     }
-    if(!checkBracketClosed(expression)){
-        exp +=")"
-    }
+    
     if(exp.indexOf("Ans") > -1){
         exp = exp.replace("Ans", preAnswer);
     }
@@ -121,8 +118,11 @@ function getSum(){
         try{
             //수식 정제
             expression = fixWrongExp(expression);
-            expression = rebuildExp(expression);
+            if(!checkBracketClosed(expression)){
+                expression +=")"
+            }
             document.getElementById("expression").value = expression + " = ";
+            expression = rebuildExp(expression);
 
             //코드 실행
             result = (new Function ('return ' + expression));
