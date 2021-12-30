@@ -98,7 +98,6 @@ function rebuildExp (exp) {
         exp = exp.replace("Ans", preAnswer);
     }
     
-
     console.log(exp);
     return exp;
 }
@@ -126,6 +125,7 @@ function getSum(){
 
             //코드 실행
             result = (new Function ('return ' + expression));
+            console.log(result);
             document.getElementById("fomula").value = result();
             preAnswer = result();
             expression = "";
